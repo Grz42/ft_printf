@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 21:24:14 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:28:38 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/03 17:01:39 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_numlen_unsigned(unsigned int num)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (num >= 10)
@@ -38,7 +38,7 @@ static int	ft_putnbr_unsigned(unsigned int n)
 
 static int	ft_printf_ua(t_flags *flags, int len, int number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (flags->minus == 0)
@@ -51,13 +51,13 @@ static int	ft_printf_ua(t_flags *flags, int len, int number)
 	}
 	else
 		count += ft_putnbr_unsigned(number)
-		+ ft_putflags(flags->width - len, ' ');
+			+ ft_putflags(flags->width - len, ' ');
 	return (count);
 }
 
 static int	ft_printf_ub(t_flags *flags, int len, int number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (flags->minus == 0)
@@ -69,7 +69,7 @@ static int	ft_printf_ub(t_flags *flags, int len, int number)
 	return (count);
 }
 
-int			ft_printf_u(t_flags *flags, va_list args)
+int	ft_printf_u(t_flags *flags, va_list args)
 {
 	int				count;
 	int				len;
@@ -85,7 +85,7 @@ int			ft_printf_u(t_flags *flags, va_list args)
 		count += ft_putnbr_unsigned(number);
 	else if (flags->dot > len && flags->dot >= flags->width)
 		count += ft_putflags(flags->dot - len, '0')
-					+ ft_putnbr_unsigned(number);
+			+ ft_putnbr_unsigned(number);
 	else if (flags->width >= len && len > flags->dot)
 		count += ft_printf_ua(flags, len, number);
 	else if (flags->width > flags->dot && flags->dot >= len)

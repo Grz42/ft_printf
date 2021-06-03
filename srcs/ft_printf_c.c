@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 20:50:57 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:46:48 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:47:41 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	padding(int n, char c)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (n-- > 0)

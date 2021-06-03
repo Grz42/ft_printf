@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 20:20:50 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 20:22:31 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:49:10 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_printf_star(t_flags *flags, va_list args)
 		flags->dot = -1;
 }
 
-int		ft_isconversion(t_flags *flags, va_list args)
+int	ft_isconversion(t_flags *flags, va_list args)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (flags->type == 'd' || flags->type == 'i')
@@ -57,9 +57,9 @@ int		ft_isconversion(t_flags *flags, va_list args)
 	return (count);
 }
 
-int		ft_putflags(int condition, char c)
+int	ft_putflags(int condition, char c)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (condition-- > 0)

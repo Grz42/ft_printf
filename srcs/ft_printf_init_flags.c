@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 20:09:57 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:34:16 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:59:36 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,32 @@ void	checkflag(const char f, t_flags *flags)
 		flags->zero = 1;
 	if (f == '.')
 	{
-		flags->dot = (flags->dot == -1) ? 0 : -2;
+		if (flags->dot == -1)
+			flags->dot = 0;
+		else
+			flags->dot = -2;
 	}
 	if (f == '*')
 	{
 		if (flags->dot == -1)
 			flags->star = 1;
+		else if (flags->star == 0)
+			flags->star = 2;
 		else
-			flags->star = (flags->star == 0) ? 2 : 3;
+			flags->star = 3;
 	}
 }
 
-int		readflag(t_flags *flags, const char *str)
+int	readflag(t_flags *flags, const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] == '-' || str[i] == '*' || str[i] == '.' || ft_isnum(str[i]))
 	{
 		checkflag(str[i], flags);
 		if (ft_isnum(str[i]))
+		{
 			while (ft_isnum(str[i]))
 			{
 				if (flags->dot == -1)
@@ -62,6 +68,7 @@ int		readflag(t_flags *flags, const char *str)
 					flags->dot = (flags->dot * 10) + (str[i] - '0');
 				i++;
 			}
+		}
 		else
 			i++;
 	}

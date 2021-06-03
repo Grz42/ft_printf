@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 21:15:05 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:16:30 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:48:37 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_printf_da(t_flags *flags, int len, int number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (number < 0)
@@ -29,7 +29,7 @@ static int	ft_printf_da(t_flags *flags, int len, int number)
 
 static int	ft_printf_db(t_flags *flags, int len, int number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (number < 0 && flags->dot == -1)
@@ -57,7 +57,7 @@ static int	ft_printf_db(t_flags *flags, int len, int number)
 
 static int	ft_printf_dc(t_flags *flags, int len, int number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (number < 0)
@@ -75,11 +75,11 @@ static int	ft_printf_dc(t_flags *flags, int len, int number)
 	return (count);
 }
 
-int			ft_printf_d(t_flags *flags, va_list args)
+int	ft_printf_d(t_flags *flags, va_list args)
 {
-	int len;
+	int	len;
 	int	number;
-	int count;
+	int	count;
 
 	ft_printf_star(flags, args);
 	number = va_arg(args, int);

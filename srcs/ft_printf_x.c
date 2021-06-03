@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 21:25:00 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 22:03:06 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/03 17:07:58 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,19 @@ static int	digitcounter(unsigned long int n)
 		return (digitcounter(n / 16) + 1);
 }
 
-char		*ft_itoa_base(unsigned long int n, char type)
+char	*ft_itoa_base(unsigned long int n, char type)
 {
 	char	*hexnumber;
 	int		len;
 	char	*base;
 
-	base = type == 'x' ? "0123456789abcdef" : "0123456789ABCDEF";
+	if (type == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
 	len = digitcounter(n);
-	if (!(hexnumber = malloc((len + 1) * sizeof(*hexnumber))))
+	hexnumber = malloc((len + 1) * sizeof(*hexnumber));
+	if (!hexnumber)
 		return (NULL);
 	hexnumber[len] = '\0';
 	while (len--)
@@ -41,7 +45,7 @@ char		*ft_itoa_base(unsigned long int n, char type)
 
 static int	ft_printf_xa(t_flags *flags, int len, char *number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (flags->minus == 0 && flags->zero == 1 && flags->dot == -1)
@@ -58,7 +62,7 @@ static int	ft_printf_xa(t_flags *flags, int len, char *number)
 
 static int	ft_printf_xb(t_flags *flags, int len, char *number)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (flags->minus == 0)
@@ -70,7 +74,7 @@ static int	ft_printf_xb(t_flags *flags, int len, char *number)
 	return (count);
 }
 
-int			ft_printf_x(t_flags *flags, va_list args)
+int	ft_printf_x(t_flags *flags, va_list args)
 {
 	int		count;
 	int		dec;

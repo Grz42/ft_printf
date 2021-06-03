@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 18:27:07 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:33:03 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:46:54 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 
 typedef struct s_flags
 {
-	int minus;
-	int zero;
-	int star;
-	int dot;
-	int width;
-	int len;
-	char type;
- } 				t_flags;
+	int		minus;
+	int		zero;
+	int		star;
+	int		dot;
+	int		width;
+	int		len;
+	char	type;
+}					t_flags;
 
 int				padding (int n, char c);
 int				ft_isnum(int c);
@@ -51,4 +51,4 @@ int				ft_printf_pct(t_flags *flags, va_list args);
 int				ft_printf(const char *str, ...);
 void			ft_printf_star(t_flags *flags, va_list args);
 
- # endif
+#endif

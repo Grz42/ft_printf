@@ -6,7 +6,7 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 21:17:32 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:28:11 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:43:32 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,18 @@ static int	ft_printf_pb(t_flags *flags, int len, char *end_hex)
 static int	ft_printf_pc(t_flags *flags, int len, char *end_hex)
 {
 	int	count;
-	int pad_size;
+	int	pad_size;
 
 	count = 0;
 	len = len + 2;
 	pad_size = flags->width - len;
 	if (!flags->minus)
-		count += padding(pad_size, flags->zero ? '0' : ' ');
+	{
+		if (flags->zero)
+			count += padding(pad_size, '0');
+		else
+			count += padding(pad_size, ' ');
+	}
 	count += ft_printf("0x%s", end_hex);
 	if (flags->minus)
 		count += padding(pad_size, ' ');
@@ -53,20 +58,20 @@ static int	ft_printf_pc(t_flags *flags, int len, char *end_hex)
 static int	ft_printf_pd(t_flags *flags, int len, char *end_hex)
 {
 	int	count;
-	int pad_size;
+	int	pad_size;
 
 	count = 0;
 	pad_size = flags->width - flags->dot;
 	if (!flags->minus)
 		count += padding(pad_size, ' ');
 	count += ft_printf("0x") + padding(flags->dot - len, '0')
-			+ ft_printf(end_hex);
+		+ ft_printf(end_hex);
 	if (flags->minus)
 		count += padding(pad_size, ' ');
 	return (count);
 }
 
-int			ft_printf_p(t_flags *flags, va_list args)
+int	ft_printf_p(t_flags *flags, va_list args)
 {
 	int						count;
 	int						len;

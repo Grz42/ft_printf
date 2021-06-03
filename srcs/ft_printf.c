@@ -6,13 +6,13 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 18:35:55 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:05:48 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/02 16:47:24 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		count;
 	va_list	args;

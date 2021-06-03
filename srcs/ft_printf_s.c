@@ -6,13 +6,13 @@
 /*   By: egrazina <egrazina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 21:23:16 by egrazina          #+#    #+#             */
-/*   Updated: 2021/06/01 21:47:04 by egrazina         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:59:49 by egrazina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		fucknorm(t_flags *flags, int pad_size, int size, char *str)
+static int	fucknorm(t_flags *flags, int pad_size, int size, char *str)
 {
 	int		count;
 
@@ -26,7 +26,7 @@ static int		fucknorm(t_flags *flags, int pad_size, int size, char *str)
 	return (count);
 }
 
-int				ft_printf_s(t_flags *flags, va_list args)
+int	ft_printf_s(t_flags *flags, va_list args)
 {
 	int		count;
 	char	*str;
@@ -38,8 +38,10 @@ int				ft_printf_s(t_flags *flags, va_list args)
 	count = 0;
 	if (str == NULL)
 		str = "(null)";
-	size = (flags->dot > ft_strlen(str) || flags->dot == -1)
-			? ft_strlen(str) : flags->dot;
+	if (flags->dot > ft_strlen(str) || (flags->dot == -1))
+		size = ft_strlen(str);
+	else
+		size = flags->dot;
 	pad_size = flags->width - size;
 	if (flags->width > ft_strlen(str) && flags->zero == 1)
 		return (fucknorm(flags, pad_size, size, str));
