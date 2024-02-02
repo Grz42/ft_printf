@@ -1,0 +1,84 @@
+- protoype -> int ft_printf(const char*, ...);
+- recode libc's printf function;
+- shouldn't handle buffer management like real printf;
+- manage -> cspdiuxX% conversions;
+- manage any combinations of -0.* flags;
+- will be compared to the real printf;
+- must use ar command to create library, using libtool command is fordbidden;
+
+see man 3 printf & man 3 stdarg manuals.
+
+## What to know?
+
+### variable argument:
+
+- #include "stdarg.h" -> stdarg.h header defines a variable type va_list and three 
+macros which can be used to get the arguments in a function when the number of arguments are
+not known i.e. variable number of arguments;
+- va_list ap -> This is a type suitable for holding information needed by the three macros 
+va_start(), va_arg() and va_end().
+
+#### how does variable argument work?
+
+- need to define a variable called va_list, then we use 3 different macros called: va_start, va_arg, 
+va_end;
+- va_start take 2 arguments: va_start("va_list name", "and the name of the last required argument").
+It's setting a pointer to the spot on the call stack where the variable arguments were stored when the
+function was called;
+- va_arg is going to pull off every argument one by one, we have to tell what type the arg is so it 
+knows the size it is;
+- and finally we call va_end to signal there are no further arguments.
+
+
+
+### basic printf format: "%[flags][width][.precision]type"
+
+#### type or specifier:
+
+- this is the type output to be printed.
+
+#### flags
+
+- "-" -> Left-justify within the given field width; Right justification is the default (see width 
+sub-specifier);
+- "0" -> Left-pads the number with zeroes (0) instead of spaces, where padding is specified (see 
+width sub-specifier);
+- "." ->
+- "*" ->
+
+#### width:
+
+- an optional digit string specifying a field width;
+- it will be padded with spaces on the left(or right, if the left adjustment flag was given);
+- "*" or "m$" for some decimal integer "m", to specify that the field width is given in the next
+argument, or in the m-th argument, which must be of type int;
+- a negative width is taken as a "-" flag followed by a positive integer;
+- if the result of the conversion is wider than the field width, the field is expanded to contain
+the conversion result.
+
+#### precision:
+
+the precision takes different meanings for the different format types.
+
+- if you wish to specify the precision of an argument it MUST be prefixed with the period, ".",
+followed by an optional digit specifying the maximum number of bytes to be printed from a string.
+- if the digit string is missing, the precision is treated as zero, (. == .0);
+- "*" will real variable argument,
+- negative precision is treated as no precision;
+
+##### string:
+
+- the precision within a string format specifies the maximum field width, if the string is greater
+than the specified precision then it will be cropped down to size;
+- char type and pointer type do not take precision: Implemented to stop printing and return -1;
+
+##### float:
+
+- "%8.2f" -> this says you require a total field of 8 characters, within the 8 characters the
+last 2 will hold the decimal part;
+- ".2f" -> this example requests the minimum field width and the last two characters are to hold
+the decimal part;
+
+the precision does not need to be hardcoded, the "*" symbol can be used and an integer supplied
+to give its value.
+apply precision first then compare with width.
